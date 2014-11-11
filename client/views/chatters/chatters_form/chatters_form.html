@@ -1,0 +1,43 @@
+<template name="ChattersForm">
+  <div class="well" style="width:400px; margin:0 auto;">
+    <div id="statusMessages"></div>
+    <form id="chatter">
+    	<div class="form-group">
+    		<label>Name</label>
+    		<input type="text" class="form-control" name="name" value="{{name}}" placeholder="name"/>
+    	</div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <div>
+          {{#each statusVals}}
+            <label class="radio-inline">
+              <input type="radio" {{statusAttrs}}/> {{label}}
+            </label>
+          {{/each}}
+        </div>
+      </div>
+      
+      <hr class="bevel-divider">
+
+      <div class="form-group">
+        <label>Join Code</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="joinCode" value="{{joinCode}}" placeholder="join code"/>
+          </div>
+          <div class="col-sm-6">
+            <button type="button" class="btn btn-default" data-action="generateJoinCode">Generate Code!</button>
+          </div>
+        </div>
+      </div>
+
+      <hr class="bevel-divider">
+      
+    	<div class="form-group">
+  		<button type="submit" class="btn btn-primary">Save Chatter</button>
+  		<a href="{{pathFor 'chatters.index'}}" class="btn btn-link">Cancel</a>
+    	</div>
+    </form>
+  </div>
+</template>

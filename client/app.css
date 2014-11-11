@@ -1,0 +1,22 @@
+/*****************************************************************************/
+/* Global CSS Styles */
+/*****************************************************************************/
+body {
+  background: #fff url("/img/retina_wood.png") repeat 0 0;
+}
+
+.app-title {
+	/*font-family: 'Over the Rainbow', cursive;*/
+	font-family: 'Amatic SC', cursive;
+	font-size: 62px;
+	text-align: center;
+	width: 360px;
+	border: 1px solid #333;
+	border-radius: 4px;
+	margin: 0 auto 20px;
+	padding: 8px 12px;
+}
+
+textarea {
+  resize: vertical;
+}

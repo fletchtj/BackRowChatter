@@ -1,0 +1,50 @@
+<template name="ChattersIndex">
+	<div class="pull-right btn-group">
+		<a class="btn btn-default" href="{{pathFor 'home'}}">Home</a>
+		<a class="btn btn-default" href="{{pathFor 'dashboard'}}">Dashboard</a>
+	</div>
+	<div>
+		<a class="btn btn-primary" href="{{pathFor 'chatters.create'}}">New Chatter</a>
+	</div>
+	<h3>Current Chatters</h3>
+	<ul class="list-group">
+		{{#each chatters}}
+			<li class="list-group-item chatter-item">
+				<div class="row">
+					<div class="col-md-5 col-sm-6">
+						<a class="btn btn-xs btn-warning" href="{{pathFor 'chatters.edit'}}">
+							<i class="fa fa-pencil"></i> Edit
+						</a>
+						<h3>
+							<a href="{{pathFor 'chatters.show'}}">{{name}}</a>
+						</h3>
+						<div class="timestamp">created on {{formatDate createdOn "long"}}</div>
+					</div>
+
+					<div class="col-md-4 col-sm-6">
+						<div class="chatter-item-counts">
+							<span><i class="fa fa-users"></i> {{userCount}}</span>
+							<span><i class="fa fa-comments"></i> {{questionCount}}</span>
+						</div>
+					</div>
+					
+					<div class="col-md-3 col-sm-6">
+						<div class="chatter-item-options">
+							<button class="btn btn-block btn-jumbo btn-success" data-toggle="modal" data-target="#showJoinCode">Show Join Code</button>
+						</div>
+					</div>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+	<div class="modal fade" id="showJoinCode" tabindex="-1" role="dialog" aria-labelledby="joinCode" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<p class="join-code-lead">{{curJoinCode}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

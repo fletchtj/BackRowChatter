@@ -1,0 +1,8 @@
+<template name="Dashboard">
+	<h2>
+		Welcome, {{currentUser.profile.name}}
+		<a href="{{pathFor 'signOut'}}" class="btn btn-default">Sign out</a>
+	</h2>
+	<a href="{{pathFor 'chatters.index'}}">Current Chatters</a>
+	
+</template>

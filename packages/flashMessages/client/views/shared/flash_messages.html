@@ -1,0 +1,22 @@
+<template name="FlashMessages">
+	{{#each messages}}
+		{{> FlashMessage}}
+	{{/each}}
+</template>
+<template name="FlashMessage">
+	<div class="alert {{styleClass}} alert-dismissable fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		{{#if group}}
+			<ul>
+				{{#each message}}
+					<li>{{{this}}}</li>
+				{{/each}}
+			</ul>
+		{{else}}
+			{{#if options.title}}
+				<h4>{{options.title}}</h4>
+			{{/if}}
+			{{{message}}}
+		{{/if}}
+	</div>
+</template>

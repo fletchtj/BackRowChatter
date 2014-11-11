@@ -1,0 +1,69 @@
+
+/*----------------------------------
+[ @login ]
+*/
+.login-wrapper {
+  background: rgba(248,248,248,0.4);
+  border-radius: 8px;
+  padding: 20px;
+  width: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 1px 1px 3px 0 #BAA686;
+}
+
+.login-messages {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  font-size: 12px;
+  color: #8A0820;
+  padding: 8px;
+  display: none;
+}
+
+.login-messages p {
+  font-size: 12px;
+}
+
+.login-header {
+  text-align: center;
+  color: #fff;
+}
+
+.login-header i {
+  color: #DBCBB1;
+  font-size: 128px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.mode-banner {
+  position: absolute;
+  top: 10px;
+  left: -130px;
+  color: #fff;
+  background-color: #171845;
+  background-color: rgba(23,24,69,0.75);
+  /*background-color: #EB2D29;*/
+  /*background-color: rgba(209,40,37,0.75);*/
+  text-align: center;
+  width:100%;
+  padding: 10px 8px;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.login-wrapper .input-group-addon i {
+  width: 16px;
+}
+
+.bevel-divider {
+  border: 0;
+  border-top: 1px solid #DBCBB1;
+  border-bottom: 1px solid #fff;
+}

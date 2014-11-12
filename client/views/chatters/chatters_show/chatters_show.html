@@ -8,24 +8,33 @@
 			<div id="statusMessages"></div>
 			<form id="newQuestion">
 				<div class="form-group">
-					<textarea name="message" class="form-control" rows="5" placeholder="what are your thoughts on the topic?"></textarea>
+					<textarea name="message" class="form-control" rows="3" placeholder="what are your thoughts on the topic?"></textarea>
 				</div>
 				<button type="submit" class="btn btn-sm btn-primary">Post question</button>
 			</form>
 		</div>
 		
 		<div class="questions">
-			{{#each chatter.questions}}
+			{{#each questions}}
 				<div class="chatter-question">
 					<div class="profile">
 						<img src="/img/profiles/generic-user.png" class="media-object img-circle" alt="profile pic" />
 					</div>
 					<div>
-						<h3>{{createdBy}}</h3>
-						<div class="timestamp">
-							<i class="fa fa-calendar"></i> {{createdOn "long"}}
+						<h3><a href="{{pathFor 'questions.show'}}">{{message}}</a></h3>
+						<div class="stats-line">
+							{{pluralize replyCount 'reply' 'replies'}}
+							{{#if lastReply}}
+							|
+							<span style="font-style: italic;">
+								last reply by {{userName lastReply.by}}
+								on {{formatDate lastReply.on "long"}}
+							</span>
+							{{/if}}
 						</div>
-						{{message}}
+						<div class="by-line">
+							Started by {{createdBy}} on {{createdOn "long"}}
+						</div>
 					</div>
 				</div>
 			{{else}}

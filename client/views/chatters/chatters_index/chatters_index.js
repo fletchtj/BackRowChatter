@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* ChattersIndex: Event Handlers and Helpersss .js*/
+/* ChattersIndex: Event Handlers and Helpers .js*/
 /*****************************************************************************/
 Template.ChattersIndex.events({
   "click button[data-target=#showJoinCode]": function (e) {
@@ -13,8 +13,8 @@ Template.ChattersIndex.helpers({
     return Utils.strings.pluralize(userNum, "user");
   }
   , questionCount: function () {
-    var questionNum = _.size(this.questions) || 0;
-    return Utils.strings.pluralize(questionNum, "question");
+    var qCount = this.questionCount || 0;
+    return Utils.strings.pluralize(qCount, "question");
   }
   , "createdOn": function () {
     return this.created.on;

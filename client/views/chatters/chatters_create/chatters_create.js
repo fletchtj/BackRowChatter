@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* ChattersCreate: Event Handlers and Helpersss .js*/
+/* ChattersCreate: Event Handlers and Helpers .js*/
 /*****************************************************************************/
 Template.ChattersCreate.events({
 

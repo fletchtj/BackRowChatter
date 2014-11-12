@@ -5,7 +5,7 @@ ChattersIndexController = RouteController.extend({
 
   data: function () {
   	return {
-  		chatters: Chatters.find()
+  		chatters: Chatters.find({}, { sort: { "created.on": -1 } })
   	}
   },
 

@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* MasterLayout: Event Handlers and Helpersss .js*/
+/* MasterLayout: Event Handlers and Helpers .js*/
 /*****************************************************************************/
 Template.MasterLayout.events({
   /*

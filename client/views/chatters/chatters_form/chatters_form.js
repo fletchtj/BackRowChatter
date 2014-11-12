@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* ChattersForm: Event Handlers and Helpersss .js*/
+/* ChattersForm: Event Handlers and Helpers .js*/
 /*****************************************************************************/
 Template.ChattersForm.events({
   "click button[data-action=generateJoinCode]": function (e, tmpl) {

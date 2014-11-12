@@ -13,3 +13,4 @@ Router.route('/chatters', {name: 'chatters.index'});
 Router.route('/chatters/new', {name: 'chatters.create'});
 Router.route('/chatters/:_id/edit', {name: 'chatters.edit'});
 Router.route('/chatters/:_id', {name: 'chatters.show'});
+Router.route('/chatters/:chatterId/questions/:_id', {name: 'questions.show'});

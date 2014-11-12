@@ -46,6 +46,7 @@ if (Meteor.isClient) {
 	});
 
 	Template.registerHelper("formatDate", function (datetime, format, showDefaultText) {
+		console.log(datetime, format);
 		showDefaultText = _.isBoolean(showDefaultText) ? showDefaultText : false;
 		if (!datetime) {
 			return showDefaultText && "Not specified" || "";
@@ -110,7 +111,7 @@ if (Meteor.isClient) {
 		return _text;
 	});
 
-	Template.registerHelper("userNameFor", function (userId) {
+	Template.registerHelper("userName", function (userId) {
 		var _userId = userId || Meteor.userId()
 			, user = Meteor.users.findOne(_userId)
 			, name;
@@ -120,5 +121,10 @@ if (Meteor.isClient) {
 			name = "Unknown User";
 		}
 		return name;
+	});
+
+	Template.registerHelper("pluralize", function(n, thing, plural) {
+		plural = _.isString(plural) ? plural : null;
+		return Utils.strings.pluralize(n, thing, plural);
 	});
 }

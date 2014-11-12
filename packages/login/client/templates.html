@@ -36,8 +36,11 @@
 			</div>
 		</form>
 		{{else}}
-			<h4>Looks like you are already signed in.</h4>
-			<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatters List</a>
+			<h3 style="font-weight: 300;">Hello, {{userName}}.</h3>
+			<a href="{{pathFor 'signOut'}}">Not {{userName}}? Sign out.</a>
+			<div style="margin: 2em 0;">
+				<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatters</a>
+			</div>
 		{{/unless}}
 	</div>
 </template>

@@ -1,0 +1,25 @@
+<template name="QuestionsShow">
+	<h2 class="chatter-title">
+		<a href="{{pathFor 'chatters.show' _id=chatter._id}}" title="Back to {{chatter.name}}"><i class="fa fa-lg fa-chevron-circle-left"></i></a>
+		{{question.message}}
+	</h2>
+	<h4 class="chatter-title" style="margin-left: 2.5em;">
+		in "{{chatter.name}}"
+	</h4>
+	<ul class="list-group">
+		{{#each replies}}
+			<li class="list-group-item">{{message}}</li>
+		{{else}}
+			<li class="list-group-item">No replies</li>
+		{{/each}}
+	</ul>
+	<div class="new-reply">
+		<div id="statusMessages"></div>
+		<form id="newReply">
+			<div class="form-group">
+				<textarea name="message" class="form-control" rows="3" placeholder="care to respond?"></textarea>
+			</div>
+			<button type="submit" class="btn btn-sm btn-primary">Post reply</button>
+		</form>
+	</div>
+</template>

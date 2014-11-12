@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/* Dashboard: Event Handlers and Helpersss .js*/
+/* Dashboard: Event Handlers and Helpers .js*/
 /*****************************************************************************/
 Template.Dashboard.events({
   /*

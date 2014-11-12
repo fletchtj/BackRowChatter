@@ -23,7 +23,7 @@ Utils = {
 			var n = parseInt(n) || 0
 				, result = n + " " + thing;
 			
-			if ( n !== 1 ) {
+			if (n !== 1) {
 				if (plural) {
 					result = n + " " + plural;
 				} else {
@@ -54,6 +54,12 @@ Utils = {
 				}
 			});
 			return o;
+		}
+	}
+	, objects: {
+		generateAuditStamp: function () {
+			// used for 'created' and 'lastModified'...
+			return { "on": new Date().getTime(), "by": Meteor.userId() }
 		}
 	}
 };

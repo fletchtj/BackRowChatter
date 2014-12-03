@@ -33,6 +33,7 @@ Meteor.methods({
       , "lastModified": auditStamp
       , "isAnswer": false
       , "votes": []
+      , "status": "active"
     });
 
     result = Replies.insert(reply);
@@ -43,5 +44,63 @@ Meteor.methods({
     }
 
     return result;
+  }
+  , "/app/replies/vote": function (vote) {
+    var loggedInUser = Meteor.user()
+      , replyId = vote.replyId
+      , reply = Replies.findOne(replyId)
+      , result;
+
+    if (!loggedInUser || !Roles.userIsInRole(loggedInUser, ["admin-role", "student-role"])) {
+      throw new Meteor.Error(403, "Access denied");
+    }
+
+    if (!reply) {
+      throw new Meteor.Error(500, "Unable to locate reply.");
+    }
+
+    // update reply votes
+    if (_.findWhere(reply.votes, { userId: loggedInUser._id })) {
+      // user has voted before...update vote count
+      result = Replies.update(
+        { _id: replyId, "votes.userId": loggedInUser._id }
+        , {
+          "$inc": { "votes.$.count": vote.count }
+          , "$set": { "votes.$.lastModified": new Date().getTime() }
+        }
+      );
+    } else {
+      // user has not voted...push vote
+      vote = _.extend(_.pick(vote, "count"), { "userId": loggedInUser._id, "lastModified": new Date().getTime() });
+      result = Replies.update(replyId, { "$addToSet": { votes: vote } });
+    }
+    
+    if (result) {
+      // if user's have an allotted vote amount, update it...
+
+    }
+
+    return result;
+  }
+  , "app/replies/delete": function (replyId) {
+    var loggedInUser = Meteor.user()
+      , reply = Replies.findOne(replyId)
+      , result;
+
+    if (!loggedInUser || loggedInUser._id !== reply.created.by && !Roles.userIsInRole(loggedInUser, ["admin-role"])) {
+      throw new Meteor.Error(403, "Access denied");
+    }
+
+    if (!reply) {
+      throw new Meteor.Error(500, "Unable to locate reply.");
+    }
+
+    // remove question (soft delete)
+    Replies.update(reply._id, { "$set": { "status": "deleted" }});
+
+    // update question count on chatter
+    Questions.update(reply.questionId, { "$inc": { "replyCount": -1 } });
+
+    return true;
   }
 });

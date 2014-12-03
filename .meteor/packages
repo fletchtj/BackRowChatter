@@ -5,6 +5,7 @@
 
 meteor-platform
 accounts-password
+reactive-var
 iron:router
 alanning:roles
 fletcher:flash-messages

@@ -1,24 +1,41 @@
 <template name="ChattersIndex">
+	<div id="statusMessages"></div>
 	<div class="pull-right btn-group">
 		<a class="btn btn-default" href="{{pathFor 'home'}}">Home</a>
 		<a class="btn btn-default" href="{{pathFor 'dashboard'}}">Dashboard</a>
 	</div>
 	<div>
-		<a class="btn btn-primary" href="{{pathFor 'chatters.create'}}">New Chatter</a>
+		{{#if canCreateChatter}}
+			<a class="btn btn-primary" href="{{pathFor 'chatters.create'}}">New Chatter Topic</a>
+		{{else}}
+			<form class="form-inline" id="joinChatter">
+				<div class="form-group">
+					<input type="text" name="joinCode" class="form-control" placeholder="join code..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Join!</button>
+			</form>
+		{{/if}}
 	</div>
-	<h3>Current Chatters</h3>
+	<h3>Chatter Topics</h3>
 	<ul class="list-group">
 		{{#each chatters}}
 			<li class="list-group-item chatter-item">
 				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<a class="btn btn-xs btn-warning" href="{{pathFor 'chatters.edit'}}">
-							<i class="fa fa-pencil"></i> Edit
-						</a>
-						<h3>
-							<a href="{{pathFor 'chatters.show'}}">{{name}}</a>
-						</h3>
-						<div class="timestamp">created on {{formatDate createdOn "long"}}</div>
+					<div class="col-md-8 col-sm-6">
+						<h3><a href="{{pathFor 'chatters.show'}}">{{topic}}</a></h3>
+						
+						<div class="timestamp">created on {{createdOn}}</div>
+						<div class="chatter-status">
+							<span class="label {{statusLabel.styleClass}}">{{statusLabel.status}}</span>
+						</div>
+
+						<div class="message-footer">
+							<div class="chatter-actions">
+								{{#each chatterActions}}
+									{{> Template.dynamic template=template data=templateData}}
+								{{/each}}
+							</div>
+						</div>
 					</div>
 
 					<div class="col-md-4 col-sm-6">
@@ -27,13 +44,11 @@
 							<span><i class="fa fa-comments"></i> {{questionCount}}</span>
 						</div>
 					</div>
-					
-					<div class="col-md-3 col-sm-6">
-						<div class="chatter-item-options">
-							<button class="btn btn-block btn-jumbo btn-success" data-toggle="modal" data-target="#showJoinCode">Show Join Code</button>
-						</div>
-					</div>
 				</div>
+			</li>
+		{{else}}
+			<li class="list-group-item chatter-item">
+				<p class="lead" style="margin-top:20px;">Join a chatter topic. You'll need a code from your teacher.</p>
 			</li>
 		{{/each}}
 	</ul>

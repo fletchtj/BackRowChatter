@@ -1,0 +1,39 @@
+/*****************************************************************************/
+/* UsersForm: Style */
+/*****************************************************************************/
+.panel-sm {
+	width: 70%;
+	min-width: 320px;
+	margin: 0 auto;
+}
+
+#userForm legend {
+	font-size: 12px;
+	font-weight: 300;
+	color: #4a7;
+	margin-top: 30px;
+	padding: 10px 20px;
+	text-align: center;
+	background-color: #efefef;
+	border: 1px solid #8cb;
+	border-radius: 4px;
+}
+#userForm legend:first-child {
+	margin-top: 0;
+}
+
+#userForm section {
+	margin: 0 20px;
+}
+
+#userForm label {
+	font-weight: 300;
+	color: #999;
+}
+
+#userForm label.checkbox-inline,
+#userForm label.checkbox-inline,
+#userForm label.radio-inline,
+#userForm label.radio-inline {
+	color: #555;
+}

@@ -1,0 +1,10 @@
+/*****************************************************************************/
+/* UsersImport: Style */
+/*****************************************************************************/
+input[type=file] {
+	background: #efefef;
+	padding: 10px;
+	font-size: 12px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+}

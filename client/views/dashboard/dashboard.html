@@ -1,8 +1,21 @@
 <template name="Dashboard">
 	<h2>
 		Welcome, {{currentUser.profile.name}}
-		<a href="{{pathFor 'signOut'}}" class="btn btn-default">Sign out</a>
+		<a href="{{pathFor 'signOut'}}" class="btn btn-link">Sign out</a>
 	</h2>
-	<a href="{{pathFor 'chatters.index'}}">Current Chatters</a>
 	
+	{{#with accountStatus}}
+		<div class="alert alert-warning">Your current account status: <span class="{{styleClass}}">{{label}}</span></div>
+	{{/with}}
+	<div class="row">
+		<div class="col-sm-5">
+			<ul class="list-unstyled">
+				{{#each actionLinks}}
+					<li style="margin-bottom: 1em;"><a href="{{actionUrl}}" class="btn btn-default btn-block btn-lg">{{actionLabel}}</a></li>
+				{{else}}
+					<li><p class="lead">How are you at twiddling your thumbs?</p></li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
 </template>

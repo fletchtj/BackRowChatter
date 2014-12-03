@@ -5,8 +5,13 @@ _.extend(App, {
 });
 
 App.helpers = {
+	voteCount: function () {
+		return _.reduce(this.votes, function (memo, vote) {
+	      return memo + vote.count;
+	    }, 0);
+	}
 };
 
 _.each(App.helpers, function (helper, key) {
-  Handlebars.registerHelper(key, helper);
+  Template.registerHelper(key, helper);
 });

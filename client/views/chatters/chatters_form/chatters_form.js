@@ -16,7 +16,7 @@ Template.ChattersForm.events({
       _.extend(chatter, { _id: this._id });
     }
 
-    if (chatter.name) {
+    if (chatter.topic) {
       Meteor.call("/app/chatters/create", chatter, function (err, result) {
         if (err) {
           Growl.error(err);
@@ -25,7 +25,7 @@ Template.ChattersForm.events({
         }
       });  
     } else {
-      Growl.error("Give your chatter a name, and try again.", { title: "Oops..."});
+      Growl.error("Add a topic for your chatter, and try again.", { title: "Oops..."});
     }
     
     return false;

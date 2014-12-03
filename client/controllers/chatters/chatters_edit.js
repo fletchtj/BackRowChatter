@@ -10,6 +10,10 @@ ChattersEditController = RouteController.extend({
   },
 
   action: function () {
-    this.render();
+    if (Chatters.findOne(this.params._id)) {
+      this.render();  
+    } else {
+      this.render("NotFound");
+    }
   }
 });

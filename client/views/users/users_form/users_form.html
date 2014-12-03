@@ -1,0 +1,84 @@
+<template name="UsersForm">
+	<div id="statusMessages"></div>
+	<form id="userForm">
+		{{#if newUser}}
+			{{> _NewUserInputs}}
+		{{else}}
+			{{> _ExistingUserStatic}}
+		{{/if}}
+
+		<legend>Optional Contact Information</legend>
+		<section>
+			<div class="form-group">
+				<label class="sr-only">Profile name</label>
+				<input name="name" value="{{profile.name}}" class="form-control" placeholder="profile name" />
+			</div>
+			<div class="form-group">
+				<label class="sr-only">E-mail address</label>
+				<input name="emailAddress" value="{{profile.emailAddress}}" class="form-control" placeholder="e-mail address" />
+			</div>
+		</section>
+
+		{{#if canManageUser}}
+			<legend>Administrative Options</legend>
+			<section>
+				<div class="form-group">
+					<label>Status</label>
+					<div class="radio-checkbox-inline-options">
+						{{#each statusOptions}}
+							{{> _Form_InlineRadioCheckbox}}
+						{{/each}}
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Role</label>
+					<div class="radio-checkbox-inline-options">
+						{{#each roleOptions}}
+							{{> _Form_InlineRadioCheckbox}}
+						{{/each}}
+					</div>
+				</div>
+			</section>
+		{{/if}}
+
+		<div class="form-group text-right">
+			<a href="{{pathFor 'users.index'}}" class="btn btn-link">Close</a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</form>
+</template>
+
+<template name="_NewUserInputs">
+	<legend>Account Details</legend>
+	<section>
+		<div class="form-group">
+			<label class="sr-only">Username</label>
+			<input name="username" value="" class="form-control" placeholder="username" />
+		</div>
+		<div class="form-group">
+			<label class="sr-only">Password</label>
+			<input name="password" value="" class="form-control" placeholder="password" />
+		</div>
+	</section>
+</template>
+
+<template name="_ExistingUserStatic">
+	<legend>Account Details</legend>
+	<section>
+		<div class="form-group">
+			<label>Username:</label>
+			<span class="form-control-static">{{username}}</span>
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<button class="btn btn-sm btn-warning">Change Password</button>
+		</div>
+	</section>
+</template>
+
+<template name="_Form_InlineRadioCheckbox">
+	<label class="{{type}}-inline">
+		<input type="{{type}}" name="{{name}}" value="{{value}}" checked="{{isChecked}}"/>
+		{{label}}
+	</label>
+</template>

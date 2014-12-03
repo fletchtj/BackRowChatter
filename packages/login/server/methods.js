@@ -1,3 +1,12 @@
+Accounts.onCreateUser(function (options, user) {
+	if (options.profile) {
+		user.status = options.profile.status;
+		user.roles = options.profile.roles;
+		user.profile = _.omit(options.profile, "status", "roles");
+	}
+	return user;
+});
+
 Meteor.methods({
 	"createAccount": function (user) {
 		if (!user || !user.username || !user.password1) {
@@ -13,7 +22,10 @@ Meteor.methods({
 		}
 
 		// create profile object
-		var _profile = {}
+		var _profile = {
+			status: "pending approval"
+			, roles: [ "student-role" ]
+		}
 		if (user.name) {
 			_profile.name = user.name;
 		}

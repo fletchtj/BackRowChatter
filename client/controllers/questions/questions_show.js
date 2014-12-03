@@ -16,6 +16,10 @@ QuestionsShowController = RouteController.extend({
   },
 
   action: function () {
-    this.render();
+    if (Questions.findOne(this.params._id)) {
+      this.render();  
+    } else {
+      this.render("NotFound");
+    }
   }
 });

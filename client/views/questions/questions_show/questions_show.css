@@ -1,0 +1,78 @@
+/*****************************************************************************/
+/* QuestionsShow: Style */
+/*****************************************************************************/
+.question-author {
+	color: #999;
+	font-style: italic;
+}
+.reply {
+	table-layout: fixed;
+}
+.vote-left {
+	text-align: center;
+}
+.vote {
+	line-height: 28px;
+	width: 40px;
+}
+.vote > a {
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	padding: 2px 0;
+}
+.vote > a > .fa {
+	font-size: 32px;
+	line-height: 18px;
+}
+
+.vote-count {
+	font-size: 24px;
+	font-weight: bold;
+	color: #999;
+}
+
+.answer {
+	display: block;
+	width: 35px;
+	height: 35px;
+	margin-top: 4px;
+}
+.answer.accepted:before {
+	content: "\f00c";
+	font-family: FontAwesome;
+	font-size: 28px;
+	color: #06B215;
+}
+
+.reply {
+	background-color: rgba(255,255,255, 0.5);
+	margin-bottom: 4px;
+	border: 1px solid #BBB;
+	border-radius: 4px;
+}
+
+.reply .media-body {
+	width: 100%;
+}
+
+.message-footer {
+	font-size: .9em;
+	margin-top: 20px;
+}
+
+.message-actions {
+	color: #999;
+}
+.reply-actions a {
+	padding: 0 4px;
+}
+
+.reply-author {
+
+}
+
+.reply-timestamp {
+	font-size: 11px;
+	color: #999;
+}

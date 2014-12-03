@@ -1,0 +1,47 @@
+<template name="UsersIndex">
+	<div style="overflow: hidden; margin-bottom:20px;">
+		<div class="pull-right btn-group">
+			<a class="btn btn-default" href="{{pathFor 'home'}}">Home</a>
+			<a class="btn btn-default" href="{{pathFor 'dashboard'}}">Dashboard</a>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title-with-tools">Manage Site Users</h4>
+			<ul class="panel-tools pull-right">
+				<li>							
+					<a href="{{pathFor "users.import"}}" class="btn btn-link import-users">
+						<i class="fa fa-file-o"></i> Import users</a>						
+				</li>
+				<li>							
+					<a href="{{pathFor 'users.create'}}" class="btn btn-success add-user">
+						<i class="fa fa-plus"></i> Create new user</a>						
+				</li>
+			</ul>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Username</th>
+						<th>Role</th>
+						<th class="text-center">Status</th>
+						<th class="text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each users}}
+						<tr class="user-item">
+							<td>{{userName _id}}</td>
+							<td>{{username}}</td>
+							<td>{{#each roles}}<span class="label label-default {{this}}">{{this}}</span>{{/each}}</td>
+							<td class="text-center">{{status}}</td>
+							<td class="text-center"><a href="{{pathFor "users.edit"}}">Edit</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

@@ -1,14 +1,14 @@
 <template name="ChattersShow">
 	<h2 class="chatter-title">
-		<a href="{{pathFor 'chatters.index'}}" title="Back to Chatters"><i class="fa fa-lg fa-chevron-circle-left"></i></a>
-		{{chatter.name}}
+		<a href="{{pathFor 'chatters.index'}}" title="Back to chatter topics"><i class="fa fa-lg fa-chevron-circle-left"></i></a>
+		{{chatter.topic}}
 	</h2>
 	<div class="chatter-questions">
 		<div class="new-question">
 			<div id="statusMessages"></div>
 			<form id="newQuestion">
 				<div class="form-group">
-					<textarea name="message" class="form-control" rows="3" placeholder="what are your thoughts on the topic?"></textarea>
+					<textarea name="message" class="form-control" rows="3" placeholder="have a question relating to the topic?"></textarea>
 				</div>
 				<button type="submit" class="btn btn-sm btn-primary">Post question</button>
 			</form>
@@ -17,28 +17,60 @@
 		<div class="questions">
 			{{#each questions}}
 				<div class="chatter-question">
-					<div class="profile">
-						<img src="/img/profiles/generic-user.png" class="media-object img-circle" alt="profile pic" />
-					</div>
-					<div>
-						<h3><a href="{{pathFor 'questions.show'}}">{{message}}</a></h3>
-						<div class="stats-line">
-							{{pluralize replyCount 'reply' 'replies'}}
-							{{#if lastReply}}
-							|
-							<span style="font-style: italic;">
-								last reply by {{userName lastReply.by}}
-								on {{formatDate lastReply.on "long"}}
-							</span>
-							{{/if}}
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="media-left vote-left">
+								<div class="vote">
+									<a href="#voteUp"><i class="fa fa-caret-up"></i></a>
+									<div class="vote-count">{{voteCount}}</div>
+									<a href="#voteDown"><i class="fa fa-caret-down"></i></a>
+								</div>
+							</div>
+							<div class="media-body">
+								<h3>
+									<a href="{{pathFor 'questions.show'}}">{{message}}</a>
+									{{#if hasAnswer}}
+										<span class="label label-success">answered</span>
+									{{/if}}
+								</h3>
+								<div class="by-line">
+									Started by {{createdBy}} on {{createdOn "long"}}
+								</div>
+								<div class="message-footer">
+									<div class="chatter-actions">
+										{{#each questionActions}}
+											<span><a href="{{actionPath}}">{{actionLabel}}</a></span>
+										{{/each}}
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="by-line">
-							Started by {{createdBy}} on {{createdOn "long"}}
+						<div class="col-sm-1">
+							<div class="stats-line">
+								<span class="stats-line-num">{{replyCount.num}}</span>
+								<span class="stats-line-label">{{replyCount.label}}</span>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="media last-reply">
+								{{#if lastReply}}
+									<a href="#" class="media-left media-middle profile">
+										<img src="/img/profiles/generic-user.jpg" class="media-object img-circle" alt="profile pic" />
+									</a>
+									<div class="media-body">
+										Last reply by {{userName lastReply.by}}
+										on {{formatDate lastReply.on "shortdt"}}
+									</div>
+								{{/if}}
+							</div>
 						</div>
 					</div>
 				</div>
 			{{else}}
-				<div>No questions have been posted.</div>
+				<div class="chatter-question">
+					<p class="lead" style="margin-top:20px;">Ahhh. I love that moment of awkward silence</p>
+					<p style="margin-top: -10px; margin-bottom:20px;">...right before someone asks the first question.</p>
+				</div>
 			{{/each}}
 		</div>
 	</div> <!-- /.chatter-questions -->

@@ -4,6 +4,7 @@ Questions.allow({
   },
 
   update: function (userId, doc, fieldNames, modifier) {
+    modifier["$set"].lastModified = { by: userId, on: new Date().getTime() };
     return true;
   },
 
@@ -18,7 +19,11 @@ Questions.deny({
   },
 
   update: function (userId, doc, fieldNames, modifier) {
-    return false;
+    var nonAllowedFields = _.without(fieldNames, "message").length > 0
+      , nonAdmin = !Roles.userIsInRole(userId, ["admin-role"])
+      , nonOwner = doc.created.by !== userId;
+
+    return nonAllowedFields || nonAdmin && nonOwner;
   },
 
   remove: function (userId, doc) {

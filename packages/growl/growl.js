@@ -35,7 +35,8 @@ createMessage = function (message, styleClass, options) {
         , opts = {};
     
     if (message instanceof Error) {
-        opts = { "title": "Uh-oh!", "message": message.reason, "code": message.error, "styleClass": "alert-danger", "sticky": true };
+        console.log("error message", message);
+        opts = _.extend({}, message_defaults, { "title": "Uh-oh!", "message": message.reason, "code": message.error, "styleClass": "alert-danger" });
     } else {
         opts.message = typeof message === "string" && message || "";
         opts.styleClass = styleClass || "alert-info";

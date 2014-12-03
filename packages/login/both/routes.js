@@ -9,4 +9,3 @@ Router.route('/sign-out', {
 	}
 });
 Router.route('/create-account', {name: 'createAccount'});
-Router.route('/dashboard', {name: 'dashboard'});

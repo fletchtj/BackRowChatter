@@ -1,3 +1,6 @@
+/*****************************************************************************/
+/* ChattersShow: Style */
+/*****************************************************************************/
 .chatter-title {
   font-weight: 300;
 }
@@ -30,17 +33,12 @@
   background: rgba(225,225,225,.5);
 }
 
-.chatter-question .profile {
-  float: left;
+.chatter-question .vote-left {
+  text-align: center;
 }
 
-.chatter-question .profile img {
-  width: 48px; 
-  height: 48px;
-}
-
-.chatter-question > div + div {
-  padding-left: 64px;
+.chatter-question .media-body {
+  width: 100%;
 }
 
 .chatter-question h1,
@@ -49,18 +47,66 @@
 .chatter-question h4,
 .chatter-question h5 {
   font-size: 16px;
-  margin: 0 0 4px;
+  margin: 6px 0 4px;
 }
-
-.chatter-question .stats-line {
-  font-size: 12px;
-  color: #555;
-}
-
 .chatter-question .by-line {
   font-size: 12px;
-  color: #999;
+  color: #587E9B;
   padding-top: 4px;
-  margin-top: 8px;
-  border-top: 1px solid #999;
+  margin: 4px 0;
+  /*border-top: 1px solid #999;*/
+}
+.chatter-question .stats-line {
+  font-size: 14px;
+  color: #685F50;
+  text-align: center;
+}
+.chatter-question .stats-line-num {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+}
+.chatter-question .stats-line-label {
+  color: #9B8767;
+}
+.chatter-question .last-reply {
+  font-size: 12px;
+  color: #9B8767;
+  font-style: italic;
+}
+.chatter-question .last-reply .profile img {
+  width: 48px; 
+  height: 48px;
+}
+.chatter-question .last-reply .profile .img-circle {
+  border: 2px solid #B5A48A;
+}
+.chatter-question .last-reply .media-body {
+  vertical-align: middle;
+}
+.chatter-actions span + span {
+  margin-left: 4px;
+}
+.chatter-actions span + span:before {
+  content: " | ";
+  margin-right: 4px;
+  color: #999;
+}
+
+@media (max-width: 767px) {
+  .chatter-question .stats-line {
+    text-align: left;
+    margin-left: 50px;
+  }
+  .chatter-question .stats-line-num {
+    font-size: inherit;
+    font-weight: normal;
+    display: inline;
+  }
+  .chatter-question .last-reply {
+    margin-left: 50px;
+  }
+  .chatter-question .last-reply .profile {
+    display: none;
+  }
 }

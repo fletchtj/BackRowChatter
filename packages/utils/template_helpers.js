@@ -1,6 +1,7 @@
 if (Meteor.isClient) {
 	var DateFormats = {
 		"short": "MMM DD, YYYY",
+		"shortdt": "MMM, DD @ h:mm a",
 		"medium": "dddd DD.MM.YYYY HH:mm",
 		"long": "dddd, MMMM DD @ h:mm a",
 		"abbr": "ddd, MMM D, YYYY",
@@ -46,7 +47,7 @@ if (Meteor.isClient) {
 	});
 
 	Template.registerHelper("formatDate", function (datetime, format, showDefaultText) {
-		console.log(datetime, format);
+		// console.log(datetime, format);
 		showDefaultText = _.isBoolean(showDefaultText) ? showDefaultText : false;
 		if (!datetime) {
 			return showDefaultText && "Not specified" || "";
@@ -105,6 +106,9 @@ if (Meteor.isClient) {
 					break;
 				case "propercase":
 					_text = Utils.strings.capitalize(_text.toLowerCase());
+					break;
+				case "uppercase":
+					_text = _text.toUpperCase();
 					break;
 			}
 		}

@@ -27,10 +27,41 @@ Template.ChattersShow.events({
     }
     return false;
   }
+  , "click a[href=#voteUp]": function (e) {
+    e.preventDefault();
+    Meteor.call("/app/questions/vote", { "count": 1, "questionId": this._id }, function (err, result) {
+      if (err) {
+        Growl.error(err);
+      }
+    });
+  }
+  , "click a[href=#voteDown]": function (e) {
+    e.preventDefault();
+    Meteor.call("/app/questions/vote", { "count": -1, "questionId": this._id }, function (err, result) {
+      if (err) {
+        Growl.error(err);
+      }
+    });
+  }
 });
 
 Template.ChattersShow.helpers({
-  //
+  replyCount: function () {
+    var _count = parseInt(this.replyCount) || 0;
+    return { "num": _count, "label": (_count === 1) ? "reply" : "replies" };
+  }
+  , questionActions: function () {
+    var loggedInUser = Meteor.user()
+      , actions = []
+      , editPath = Router.routes["questions.edit"].path({ "chatterId": this.chatterId, "_id": this._id })
+      , deletePath = Router.routes["questions.delete"].path({ "chatterId": this.chatterId, "_id": this._id });
+
+    if (this.created.by === loggedInUser._id || Roles.userIsInRole(loggedInUser, ["admin-role"])) {
+      actions.push({ "actionPath": editPath, "actionLabel": "Edit" });
+      actions.push({ "actionPath": deletePath, "actionLabel": "Delete" });
+    }
+    return actions;
+  }
 });
 
 /*****************************************************************************/

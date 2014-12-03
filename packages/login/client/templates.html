@@ -39,7 +39,7 @@
 			<h3 style="font-weight: 300;">Hello, {{userName}}.</h3>
 			<a href="{{pathFor 'signOut'}}">Not {{userName}}? Sign out.</a>
 			<div style="margin: 2em 0;">
-				<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatters</a>
+				<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatter Topics</a>
 			</div>
 		{{/unless}}
 	</div>
@@ -80,7 +80,7 @@
 				<label>Optional Contact Information</label>
 				<div class="form-group">
 					<label class="sr-only">Name</label>
-					<input type="text" class="form-control" name="name" placeholder="name"/>
+					<input type="text" class="form-control" name="name" placeholder="profile name"/>
 				</div>
 				<div class="form-group">
 					<label class="sr-only">Phone</label>

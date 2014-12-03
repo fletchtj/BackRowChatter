@@ -1,16 +1,67 @@
 <template name="QuestionsShow">
 	<h2 class="chatter-title">
-		<a href="{{pathFor 'chatters.show' _id=chatter._id}}" title="Back to {{chatter.name}}"><i class="fa fa-lg fa-chevron-circle-left"></i></a>
-		{{question.message}}
+		<a href="{{pathFor 'chatters.show' _id=chatter._id}}" title="Back to chatter topic"><i class="fa fa-lg fa-chevron-circle-left"></i></a>
+		<small>found in "{{chatter.topic}}"</small>
 	</h2>
-	<h4 class="chatter-title" style="margin-left: 2.5em;">
-		in "{{chatter.name}}"
-	</h4>
-	<ul class="list-group">
+	<div class="well">
+		{{#with question}}
+		<div class="media-left vote-left">
+			<div class="vote">
+				<a href="#voteUpQuestion"><i class="fa fa-caret-up"></i></a>
+				<div class="vote-count">{{voteCount}}</div>
+				<a href="#voteDownQuestion"><i class="fa fa-caret-down"></i></a>
+			</div>
+		</div>
+		<div class="media-body">
+			<div class="question-author">Asked by {{createdBy}} on {{createdOn}}</div>
+			<p class="lead">{{message}}</p>
+			<div class="message-footer">
+				<div class="chatter-actions">
+					{{#each questionActions}}
+						<span><a href="{{actionPath}}">{{actionLabel}}</a></span>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		{{/with}}
+	</div>
+	<ul class="list-group replies">
 		{{#each replies}}
-			<li class="list-group-item">{{message}}</li>
+			<li class="list-group-item reply">
+				<div class="media-left vote-left">
+					<div class="vote">
+						<a href="#voteUpReply"><i class="fa fa-caret-up"></i></a>
+						<div class="vote-count">{{voteCount}}</div>
+						<a href="#voteDownReply"><i class="fa fa-caret-down"></i></a>
+					</div>
+					{{#if questionOwner}}
+						<div class="answer">
+							<a href="#acceptAnswer" class="btn {{btnAccepted}}"><i class="fa fa-check"></i></a>
+						</div>
+					{{else}}
+						<div class="answer {{accepted}}"></div>
+					{{/if}}
+				</div>
+				<div class="media-body">
+					{{message}}
+					<div class="message-footer row">
+						<div class="col-sm-8 chatter-actions">
+							{{#each replyActions}}
+								<span><a href="{{actionPath}}">{{actionLabel}}</a></span>
+							{{/each}}
+						</div>
+						<div class="col-sm-4">
+							<div class="reply-author">{{createdBy}}</div>
+							<div class="reply-timestamp">{{createdOn}}</div>
+						</div>
+					</div>
+				</div>
+			</li>
 		{{else}}
-			<li class="list-group-item">No replies</li>
+			<li class="list-group-item reply">
+				<p class="lead" style="margin-top: 20px;">Shhh. Hear that?</p>
+				<p style="margin-top: -10px; margin-bottom: 20px;">It's the sound of crickets chirping. Be brave and break the silence.</p>
+			</li>
 		{{/each}}
 	</ul>
 	<div class="new-reply">

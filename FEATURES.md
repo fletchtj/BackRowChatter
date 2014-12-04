@@ -2,8 +2,8 @@ FEATURES
 -------
 * √ - Teacher logs in and creates a "chatter" topic.
 * √ - Teacher distributes a short code for the "chatter" topic to students.
-* Teacher can set status of "chatter" topic to "open", "close", or "archive".
-* Teacher can manage (create, modify, delete, disable) student accounts.
+* √ - Teacher can set status of "chatter" topic to "open", "closed", or "archived".
+* √ - Teacher can manage (create, modify, delete, disable) student accounts.
 * √ - Students log in and use short code to join "chatter" channel.
 * √ - Students can post questions and vote up questions.
 * √ - Students can respond to questions.

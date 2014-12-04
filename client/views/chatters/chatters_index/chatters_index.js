@@ -11,7 +11,7 @@ Template.ChattersIndex.events({
     
     if (code) {
       Meteor.call("/app/chatters/join", code, function (err, result) {
-        console.log(err, result);
+        // console.log(err, result);
         if (err) {
           Growl.error(err);
         }

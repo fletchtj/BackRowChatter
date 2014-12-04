@@ -4,6 +4,7 @@
 		{{chatter.topic}}
 	</h2>
 	<div class="chatter-questions">
+		{{#if chatterOpen}}
 		<div class="new-question">
 			<div id="statusMessages"></div>
 			<form id="newQuestion">
@@ -13,6 +14,7 @@
 				<button type="submit" class="btn btn-sm btn-primary">Post question</button>
 			</form>
 		</div>
+		{{/if}}
 		
 		<div class="questions">
 			{{#each questions}}

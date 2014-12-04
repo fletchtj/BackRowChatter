@@ -1,7 +1,7 @@
 if (!Meteor.users.find().count()) {
 	var adminId = Accounts.createUser({
 		username: "admin"
-		, password: "password"
+		, password: "backRowAdminPass"
 		, profile: { name: "Admin User" }
 	});
 

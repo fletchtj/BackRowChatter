@@ -1,7 +1,7 @@
 var importResults = new ReactiveVar([]);
 
 var parseComplete = function (results, file) {
-	console.log(results.data);
+	// console.log(results.data);
 	if (_.isEmpty(results.errors)) {
 		results.data = _.map(results.data, function (row) {
 			return _.object(_.map(row, function (cell, key) {
@@ -10,7 +10,7 @@ var parseComplete = function (results, file) {
 		});
 		importResults.set(results.data);
 	} else {
-		console.log("ERROR! results:", results);
+		// console.log("ERROR! results:", results);
 	}
 }
 

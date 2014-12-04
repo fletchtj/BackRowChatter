@@ -64,6 +64,7 @@
 			</li>
 		{{/each}}
 	</ul>
+	{{#if chatterOpen}}
 	<div class="new-reply">
 		<div id="statusMessages"></div>
 		<form id="newReply">
@@ -73,4 +74,5 @@
 			<button type="submit" class="btn btn-sm btn-primary">Post reply</button>
 		</form>
 	</div>
+	{{/if}}
 </template>

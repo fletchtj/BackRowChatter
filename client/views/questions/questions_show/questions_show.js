@@ -27,7 +27,7 @@ Template.QuestionsShow.events({
   }
   , "click a[href=#voteUpQuestion]": function (e) {
     e.preventDefault();
-    console.log(this);
+    // console.log(this);
     Meteor.call("/app/questions/vote", { "count": 1, "questionId": this._id }, function (err, result) {
       // console.log(err, result);
       if (err) {
@@ -105,6 +105,9 @@ Template.QuestionsShow.helpers({
       actions.push({ "actionPath": deletePath, "actionLabel": "Delete" });
     }
     return actions;
+  }
+  , chatterOpen: function () {
+    return "open" === this.chatter.status;
   }
 });
 

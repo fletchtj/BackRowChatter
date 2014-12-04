@@ -46,7 +46,10 @@ Template.ChattersShow.events({
 });
 
 Template.ChattersShow.helpers({
-  replyCount: function () {
+  chatterOpen: function () {
+    return "open" === this.chatter.status;
+  }
+  , replyCount: function () {
     var _count = parseInt(this.replyCount) || 0;
     return { "num": _count, "label": (_count === 1) ? "reply" : "replies" };
   }

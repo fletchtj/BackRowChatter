@@ -23,7 +23,7 @@ Template.ChattersEdit.helpers({
 /* ChattersEdit: Lifecycle Hooks */
 /*****************************************************************************/
 Template.ChattersEdit.created = function () {
-  console.log("editing...", this.data);
+  // console.log("editing...", this.data);
 };
 
 Template.ChattersEdit.rendered = function () {

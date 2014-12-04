@@ -30,14 +30,14 @@ Template.Dashboard.helpers({
   , accountStatus: function () {
     var user = Meteor.user()
       , status;
-    console.log(user.status);
+    // console.log(user.status);
     if (user.status !== "active") {
       status = { styleClass: "label label-danger", label: user.status.toUpperCase() };
       if (user.status === "awaiting approval") {
         status.styleClass = "label label-warning";
       }
     }
-    console.log(status);
+    // console.log(status);
     return status;
   }
 });

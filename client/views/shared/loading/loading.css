@@ -1,3 +1,103 @@
 /*****************************************************************************/
 /* Loading: Style */
 /*****************************************************************************/
+/*----------------------------------
+[ @Spinners ]
+*/
+.spinWrapper {
+  margin: 100px auto;
+  width: 300px;
+  height: 190px;
+  text-align: center;
+  position: relative;
+}
+
+.spinWrapper > h3 {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 300px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: #999;
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: 3px 3px 8px 0px rgba(71, 71, 71, 0.3);
+  -moz-box-shadow:    3px 3px 8px 0px rgba(71, 71, 71, 0.3);
+  box-shadow:         3px 3px 8px 0px rgba(71, 71, 71, 0.3);
+}
+
+.spinWrapper > h3.orange {
+  color: #D9813C;
+}
+
+.spinWrapper > h3.red {
+  color: #C92205;
+}
+
+.spinWrapper > h3.green {
+  color: #846D3E;
+}
+
+.spinDots {
+  margin: 100px auto;
+  width: 190px;
+  height: 190px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #c2b9ba;
+  border-radius: 100%;
+  
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.dot.orange {
+  background-color: #f0ad4e;
+  color: #D9813C;
+}
+
+.dot.red {
+  background-color: #b23e0d;
+  color: #C92205;
+}
+
+.dot.green {
+  background-color: #6d6139;
+  color: #846D3E;
+}
+
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

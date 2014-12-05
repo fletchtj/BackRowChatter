@@ -6,15 +6,20 @@ body {
 }
 
 .app-title {
-	/*font-family: 'Over the Rainbow', cursive;*/
-	font-family: 'Amatic SC', cursive;
-	font-size: 62px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 36px;
+	font-weight: 700;
 	text-align: center;
-	width: 360px;
+	width: 380px;
 	border: 1px solid #333;
 	border-radius: 4px;
 	margin: 0 auto 20px;
 	padding: 8px 12px;
+
+}
+
+.app-title .fa {
+	font-size: 48px;
 }
 
 textarea {

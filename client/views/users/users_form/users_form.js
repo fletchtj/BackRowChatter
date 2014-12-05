@@ -28,6 +28,55 @@ Template.UsersForm.events({
     // console.log("user: ", this, " form: ", formObj);
     return false;
   }
+  , "click #changePassword": function (e) {
+    e.preventDefault();
+    $("#passwordDialog").modal("show");
+  }
+  , "submit #passwordForm": function (e) {
+    e.preventDefault();
+    
+    var formObj = Utils.forms.sArrayToObject($(e.currentTarget).serializeArray())
+      , errMessages = [];
+
+    if (this._id === Meteor.userId() && !formObj.oldPassword) {
+      errMessages.push("Please enter your old password.");
+    }
+    if (!formObj.newPassword1) {
+      errMessages.push("The new password cannot be blank.");
+    }
+    if (formObj.newPassword1 !== formObj.newPassword2) {
+      errMessages.push("The new password does not match the confirmed password.");
+    }
+
+    if (!!_.size(errMessages)) {
+      Growl.error(errMessages.join("<br>"), { title: "Error", parentSelector: ".password-status-messages" });
+    } else {
+      if (this._id === Meteor.userId()) {
+        Accounts.changePassword(formObj.oldPassword, formObj.newPassword1, function (err) {
+          if (err) {
+            Growl.error(err.reason, { title: "Error", parentSelector: ".password-status-messages" });
+          } else {
+            // close the modal
+            Growl.success("Password changed successfully.", { title: "Congratulations." });
+            $("#passwordDialog").modal("hide");
+          }
+        });  
+      } else {
+        Meteor.call("/app/users/setPassword", this._id, formObj.newPassword1, function (err, result) {
+          if (err) {
+            Growl.error(err.reason, { title: "Error", parentSelector: ".password-status-messages" });
+          } else {
+            // close the modal
+            Growl.success("Password changed successfully.", { title: "Congratulations." });
+            $("#passwordDialog").modal("hide");
+          }
+        });
+      }
+      
+    }
+    
+    return false;
+  }
 });
 
 Template.UsersForm.helpers({
@@ -58,6 +107,9 @@ Template.UsersForm.helpers({
       , { name: "roles", type: "checkbox", label: "Moderator", value: "moderator-role", isChecked: _.contains(user.roles, "moderator-role") }
       , { name: "roles", type: "checkbox", label: "Admin", value: "admin-role", isChecked: _.contains(user.roles, "admin-role") }
     ]
+  }
+  , myPassword: function () {
+    return this._id === Meteor.userId();
   }
 });
 

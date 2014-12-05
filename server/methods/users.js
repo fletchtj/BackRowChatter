@@ -3,7 +3,10 @@
 /*****************************************************************************/
 
 Meteor.methods({
-	"/app/users/save": function (user) {
+	"/app/users/setPassword": function (userId, newPassword) {
+		return Accounts.setPassword(userId, newPassword);
+	}
+	, "/app/users/save": function (user) {
 		var loggedInUser = Meteor.user()
 			, isAdmin
 			, isUser;

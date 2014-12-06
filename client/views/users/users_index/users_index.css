@@ -51,3 +51,16 @@
 .user-item .student-role {
 	background-color: #88f;
 }
+
+#filterUsersForm {
+	margin-bottom: 12px;
+	background-color: #E6F3FA;
+	padding: 8px 10px;
+	border: 1px solid #C5D0D6;
+	border-radius: 4px;
+}
+#filterUsersForm label {
+	color: #999;
+	font-weight: 300;
+	margin-right: 8px;
+}

@@ -6,6 +6,27 @@ Meteor.methods({
 	"/app/users/setPassword": function (userId, newPassword) {
 		return Accounts.setPassword(userId, newPassword);
 	}
+	, "/app/users/saveStatus": function (users, status) {
+		var loggedInUser = Meteor.user()
+			, isAdmin = loggedInUser && Roles.userIsInRole(loggedInUser, ["admin-role"]);;
+		
+		if (_.isEmpty(users)) {
+			throw new Meteor.Error(500, "There were no users to update");
+		}
+
+		if (!isAdmin) {
+			throw new Meteor.Error(403, "Access denied");
+		}
+
+		if (!_.contains([ "awaiting approval", "active", "disabled" ], status)) {
+			throw new Meteor.Error(400, "Unable to set status to '" + status + "'");
+		}
+
+		// admin cannot bulk change their own status
+		users = _.without(users, Meteor.userId());
+
+		return Meteor.users.update({ "_id": { "$in": users } }, { "$set": { "status": status }}, { "multi": true });
+	}
 	, "/app/users/save": function (user) {
 		var loggedInUser = Meteor.user()
 			, isAdmin

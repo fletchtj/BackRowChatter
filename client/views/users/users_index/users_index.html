@@ -20,11 +20,29 @@
 			</ul>
 		</div>
 		<div class="panel-body">
+			<div id="statusMessages"></div>
+			<form id="filterUsersForm" class="form-inline">
+				<div class="form-group">
+					<label>Filter by</label>
+					<select name="filterField" id="filterField" class="form-control">
+						<option value="username">Username</option>
+						<option value="profile.name">Name</option>
+						<option value="roles">Role</option>
+						<option value="status">Status</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input name="filterVal" id="filterVal" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-default">Go</button>
+				<a href="#" id="resetUsersFilter" class="btn btn-link">Clear filter</a>
+			</form>
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Name</th>
+						<th class="text-center"><input type="checkbox" id="cBoxToggle" title="Select/Deselect All" /></th>
 						<th>Username</th>
+						<th>Name</th>
 						<th>Role</th>
 						<th class="text-center">Status</th>
 						<th class="text-center">Actions</th>
@@ -33,8 +51,9 @@
 				<tbody>
 					{{#each users}}
 						<tr class="user-item">
-							<td>{{userName _id}}</td>
+							<td class="text-center"><input type="checkbox" name="user" value="{{_id}}"/></td>
 							<td>{{username}}</td>
+							<td>{{userName _id}}</td>
 							<td>{{#each roles}}<span class="label label-default {{this}}">{{this}}</span>{{/each}}</td>
 							<td class="text-center">{{status}}</td>
 							<td class="text-center"><a href="{{pathFor "users.edit"}}">Edit</a></td>
@@ -42,6 +61,19 @@
 					{{/each}}
 				</tbody>
 			</table>
+			<div class="form-group">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" style="margin-left: 14px;">With the selected users</button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle dropdown</span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="#" id="approveSelectedUsers">Approve accounts</a></li>
+						<li><a href="#" id="disableSelectedUsers">Disable accounts</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

@@ -1,0 +1,18 @@
+<template name="_LiveChat">
+	<div id="statusMessages"></div>
+	<ul class="livechat-message-list list-unstyled">
+		{{#each messages}}
+			<li>({{createdOn "military"}}) <strong>{{createdBy}}:</strong> {{message}}</li>
+		{{/each}}
+	</ul>
+	{{#if chatterOpen}}
+		<form id="liveChatMessageForm">
+			<div class="input-group">
+				<input type="text" id="message" class="form-control" placeholder="your message here...">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default">Send</button>
+				</span>
+			</div>
+		</form>
+	{{/if}}
+</template>

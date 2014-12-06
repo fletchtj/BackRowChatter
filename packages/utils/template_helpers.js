@@ -5,7 +5,8 @@ if (Meteor.isClient) {
 		"medium": "dddd DD.MM.YYYY HH:mm",
 		"long": "dddd, MMMM DD @ h:mm a",
 		"abbr": "ddd, MMM D, YYYY",
-		"datepicker": "MM/DD/YYYY"
+		"datepicker": "MM/DD/YYYY",
+		"military": "HH:mm"
 	}
 
 	Template.registerHelper("createdBy", function () {

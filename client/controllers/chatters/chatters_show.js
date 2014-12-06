@@ -3,6 +3,7 @@ ChattersShowController = RouteController.extend({
   	return [
       Meteor.subscribe("chatter", this.params._id)
       , Meteor.subscribe("questions", this.params._id)
+      , Meteor.subscribe("liveChatMessages", this.params._id)
     ];
   },
 
@@ -10,6 +11,7 @@ ChattersShowController = RouteController.extend({
   	return { 
   		chatter: Chatters.findOne(this.params._id)
       , questions: Questions.find({chatterId: this.params._id}, { sort: { "created.on": -1 } })
+      , messages: LiveChatMessages.find({chatterId: this.params._id})
   	};
   },
 

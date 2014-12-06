@@ -3,7 +3,7 @@
 /*****************************************************************************/
 
 Meteor.methods({
-  "/app/chatters/create": function (chatter) {
+  "/app/chatters/save": function (chatter) {
   	var loggedInUser = Meteor.user()
 	  	, chatterId = chatter._id
       , auditStamp = Utils.objects.generateAuditStamp();
@@ -12,12 +12,16 @@ Meteor.methods({
   		throw new Meteor.Error(403, "Access denied");
   	}
 
+    if (["QnA", "LiveChat"].indexOf(chatter.type) === -1) {
+      chatter.type = "QnA";
+    }
+
   	if (["open", "closed", "archived"].indexOf(chatter.status) === -1) {
   		chatter.status = "closed";
   	}
 
   	// only take what we need...
-  	chatter = _.pick(chatter, "topic", "status", "joinCode");
+  	chatter = _.pick(chatter, "type", "topic", "status", "joinCode");
 
   	if (!chatterId) {
   		// brand new chatter...insert
@@ -25,9 +29,14 @@ Meteor.methods({
 	  		"created": auditStamp
 	  		, "lastModified": auditStamp
 	  		, "users": []
-	  		, "questionCount": 0
-        , "lastReply": null
 	  	});
+
+      if ("QnA" === chatter.type) {
+        _.extend(chatter, {
+          "questionCount": 0
+          , "lastReply": null
+        });
+      }
 	  	
   		return Chatters.insert(chatter);
 

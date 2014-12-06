@@ -1,6 +1,6 @@
 Questions.allow({
   insert: function (userId, doc) {
-    return true;
+    return false;
   },
 
   update: function (userId, doc, fieldNames, modifier) {
@@ -9,13 +9,13 @@ Questions.allow({
   },
 
   remove: function (userId, doc) {
-    return true;
+    return false;
   }
 });
 
 Questions.deny({
   insert: function (userId, doc) {
-    return false;
+    return true;
   },
 
   update: function (userId, doc, fieldNames, modifier) {
@@ -27,6 +27,6 @@ Questions.deny({
   },
 
   remove: function (userId, doc) {
-    return false;
+    return true;
   }
 });

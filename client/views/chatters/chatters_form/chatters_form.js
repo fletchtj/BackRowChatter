@@ -17,7 +17,7 @@ Template.ChattersForm.events({
     }
 
     if (chatter.topic) {
-      Meteor.call("/app/chatters/create", chatter, function (err, result) {
+      Meteor.call("/app/chatters/save", chatter, function (err, result) {
         if (err) {
           Growl.error(err);
         } else {
@@ -33,7 +33,20 @@ Template.ChattersForm.events({
 });
 
 Template.ChattersForm.helpers({
-  statusAttrs: function () {
+  typeAttrs: function () {
+    var chatter = Router.current().data().chatter
+      , attrs = {
+        name: "type"
+        , value: this.val
+      };
+
+    if (chatter.type && this.val === chatter.type || this.defaultChecked) {
+      attrs.checked = true;
+    }
+
+    return attrs;
+  }
+  , statusAttrs: function () {
     var chatter = Router.current().data().chatter
       , attrs = {
         name: "status"
@@ -52,6 +65,12 @@ Template.ChattersForm.helpers({
 /* ChattersForm: Lifecycle Hooks */
 /*****************************************************************************/
 Template.ChattersForm.created = function () {
+  // possible chatter types...
+  var typeVals = [
+    { label: "Q & A", val: "QnA", defaultChecked: true }
+    , { label: "LiveChat", val: "LiveChat", defaultChecked: false }
+  ];
+
   // possible status values for a chatter...
   var statusVals = [
     { label: "Open", val: "open", defaultChecked: true }
@@ -67,7 +86,7 @@ Template.ChattersForm.created = function () {
     // auto-generate a new join code, so it pre-populates
     _.extend(this.data, { joinCode: Random.id(6) } );
   }
-  _.extend(this.data, { statusVals: statusVals });
+  _.extend(this.data, { typeVals: typeVals, statusVals: statusVals });
 };
 
 Template.ChattersForm.rendered = function () {

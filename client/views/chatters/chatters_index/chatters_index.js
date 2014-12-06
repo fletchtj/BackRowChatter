@@ -30,7 +30,7 @@ Template.ChattersIndex.helpers({
     var userNum = _.size(this.users) || 0;
     return Utils.strings.pluralize(userNum, "user");
   }
-  , questionCount: function () {
+  , questionCountLabel: function () {
     var qCount = this.questionCount || 0;
     return Utils.strings.pluralize(qCount, "question");
   }

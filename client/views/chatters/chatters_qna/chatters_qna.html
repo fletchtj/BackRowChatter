@@ -1,0 +1,75 @@
+<template name="_QnA">
+	<div class="chatter-questions">
+		{{#if chatterOpen}}
+		<div class="new-question">
+			<div id="statusMessages"></div>
+			<form id="newQuestion">
+				<div class="form-group">
+					<textarea name="message" class="form-control" rows="3" placeholder="have a question relating to the topic?"></textarea>
+				</div>
+				<button type="submit" class="btn btn-sm btn-primary">Post question</button>
+			</form>
+		</div>
+		{{/if}}
+		
+		<div class="questions">
+			{{#each questions}}
+				<div class="chatter-question">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="media-left vote-left">
+								<div class="vote">
+									<a href="#voteUp"><i class="fa fa-caret-up"></i></a>
+									<div class="vote-count">{{voteCount}}</div>
+									<a href="#voteDown"><i class="fa fa-caret-down"></i></a>
+								</div>
+							</div>
+							<div class="media-body">
+								<h3>
+									<a href="{{pathFor 'questions.show'}}">{{message}}</a>
+									{{#if hasAnswer}}
+										<span class="label label-success">answered</span>
+									{{/if}}
+								</h3>
+								<div class="by-line">
+									Started by {{createdBy}} on {{createdOn "long"}}
+								</div>
+								<div class="message-footer">
+									<div class="chatter-actions">
+										{{#each questionActions}}
+											<span><a href="{{actionPath}}">{{actionLabel}}</a></span>
+										{{/each}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-1">
+							<div class="stats-line">
+								<span class="stats-line-num">{{replyCount.num}}</span>
+								<span class="stats-line-label">{{replyCount.label}}</span>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="media last-reply">
+								{{#if lastReply}}
+									<a href="#" class="media-left media-middle profile">
+										<img src="/img/profiles/generic-user.jpg" class="media-object img-circle" alt="profile pic" />
+									</a>
+									<div class="media-body">
+										Last reply by {{userName lastReply.by}}
+										on {{formatDate lastReply.on "shortdt"}}
+									</div>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+				</div>
+			{{else}}
+				<div class="chatter-question">
+					<p class="lead" style="margin-top:20px;">Ahhh. I love that moment of awkward silence</p>
+					<p style="margin-top: -10px; margin-bottom:20px;">...right before someone asks the first question.</p>
+				</div>
+			{{/each}}
+		</div>
+	</div> <!-- /.chatter-questions -->
+</template>

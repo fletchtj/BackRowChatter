@@ -64,3 +64,23 @@
 	letter-spacing: 8px;
 	padding: 1em 0;
 }
+.chatter-type {
+	font-family: 'Roboto', sans-serif;
+	color: #F5E1B8;
+	letter-spacing: .12em;
+	border: 1px solid #8F7540;
+	border-radius: 3px;
+	padding: 2px 4px 2px 6px;
+	background-color: #C49B43;
+	cursor: default;
+}
+.chatter-type.open {
+	background-color: #288A45;
+	border-color: #1A5C2E;
+	color: #A2EBB7;
+}
+.chatter-type.closed {
+	background-color: #AB2C2C;
+	border-color: #892424;
+	color: #F7A3A3;
+}

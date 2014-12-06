@@ -10,6 +10,9 @@ App.helpers = {
 	      return memo + vote.count;
 	    }, 0);
 	}
+	, chatterOpen: function () {
+	    return "open" === this.chatter.status;
+	}
 };
 
 _.each(App.helpers, function (helper, key) {

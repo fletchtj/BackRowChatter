@@ -36,8 +36,8 @@
 			</div>
 		</form>
 		{{else}}
-			<h3 style="font-weight: 300;">Hello, {{currentUser.profile.name}}.</h3>
-			<a href="{{pathFor 'signOut'}}">Not {{currentUser.profile.name}}? Sign out.</a>
+			<h3 style="font-weight: 300;">Hello, {{userName}}.</h3>
+			<a href="{{pathFor 'signOut'}}">Not {{userName}}? Sign out.</a>
 			<div style="margin: 2em 0;">
 				<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatter Topics</a>
 			</div>

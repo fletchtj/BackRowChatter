@@ -122,10 +122,15 @@ Utils = {
 	}
 	, objects: {
 		userName: function (userId) {
-			var user = Meteor.users.findOne(userId)
+			var user = Meteor.users.findOne(Meteor.userId)
 				, name;
+				//console.log(user);
+				console.log("The userID was found");
 			if (user) {
 				name = user.profile.name || user.username;
+				console.log("Meteor.userId = " + Meteor.userId);
+				console.log("user.profile.name = " + user.profile.name);
+				console.log("user.username = " + user.username);
 			} else {
 				name = "Unknown User";
 			}

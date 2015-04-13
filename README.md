@@ -1,4 +1,4 @@
-FEATURES
+INCLUDED FEATURES
 -------
 * √ - Teacher logs in and creates a "chatter" topic.
 * √ - Teacher distributes a short code for the "chatter" topic to students.

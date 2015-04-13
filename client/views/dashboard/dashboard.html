@@ -1,9 +1,11 @@
 <template name="Dashboard">
+	{{#with currentUser}}
 	<h2>
-		Welcome, {{currentUser.profile.name}}
+		Welcome, {{userName _id}}
 		<a href="{{pathFor 'signOut'}}" class="btn btn-link">Sign out</a>
 	</h2>
-	
+	{{/with}}
+
 	{{#with accountStatus}}
 		<div class="alert alert-warning">Your current account status: <span class="{{styleClass}}">{{label}}</span></div>
 	{{/with}}

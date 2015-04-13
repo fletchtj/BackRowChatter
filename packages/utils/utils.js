@@ -122,7 +122,7 @@ Utils = {
 	}
 	, objects: {
 		userName: function (userId) {
-			var user = Meteor.users.findOne(Meteor.userId)
+			var user = Meteor.users.findOne(userId)
 				, name;
 			if (user) {
 				name = user.profile.name || user.username;

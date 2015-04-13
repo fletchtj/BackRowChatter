@@ -36,11 +36,13 @@
 			</div>
 		</form>
 		{{else}}
-			<h3 style="font-weight: 300;">Hello, {{userName}}.</h3>
-			<a href="{{pathFor 'signOut'}}">Not {{userName}}? Sign out.</a>
+		{{#with currentUser}}
+			<h3 style="font-weight: 300;">Hello, {{userName _id}}.</h3>
+			<a href="{{pathFor 'signOut'}}">Not {{userName _id}}? Sign out.</a>
 			<div style="margin: 2em 0;">
 				<a href="{{pathFor 'chatters.index'}}" class="btn btn-success">Jump to Chatter Topics</a>
 			</div>
+		{{/with}}
 		{{/unless}}
 	</div>
 </template>
